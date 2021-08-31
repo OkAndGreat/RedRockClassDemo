@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">RedRockClassDemo</string>
+    <string name="material_design">Material Design</string>
+    <string name="res">res</string>
+    <string name="night_adapt">黑夜模式适配</string>
+    <string name="viewpager">ViewPager</string>
+    <string name="tablayout">TabLayout</string>
+    <string name="recyclerview">RecyclerView</string>
 </resources>

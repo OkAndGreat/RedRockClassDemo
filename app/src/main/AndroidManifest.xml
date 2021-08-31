@@ -10,6 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RedRockClassDemo">
         <activity
+            android:name=".NightAdaptActivity"
+            android:exported="true" />
+        <activity
+            android:name=".RecyclerViewActivity"
+            android:exported="true" />
+        <activity
+            android:name=".TabLayoutActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ViewPagerActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MaterialDesignActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ResActivity"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
