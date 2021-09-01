@@ -6,4 +6,8 @@
     <string name="viewpager">ViewPager</string>
     <string name="tablayout">TabLayout</string>
     <string name="recyclerview">RecyclerView</string>
+
+
+    <string name="textview">我是一个TextView</string>
+    <string name="login">登 录</string>
 </resources>
