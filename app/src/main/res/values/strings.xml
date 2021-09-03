@@ -10,4 +10,5 @@
 
     <string name="textview">我是一个TextView</string>
     <string name="login">登 录</string>
+    <string name="tv_night_adapt">红岩网校工作站</string>
 </resources>
