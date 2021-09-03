@@ -17,4 +17,7 @@
     <color name="ll_color">#4841E2</color>
     <color name="rl_color">#FFFFFF</color>
     <color name="tv_color">#000000</color>
+
+    <color name="btn_color_normal">#4841E2</color>
+    <color name="btn_color_pressed">#0D47A1</color>
 </resources>

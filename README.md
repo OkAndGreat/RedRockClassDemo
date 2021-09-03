@@ -159,7 +159,102 @@ shape资源文件可以用来优化我们写的View的背景，这是一个我�
 
 接下来我们再来学习selector资源文件
 
+selector翻译成中文就是选择器，看下面俩张微信app某页面的图片，一张是默认状态，还有一张是点击时的状态，这种效果就是selector做到的，它可以让view在不同的状态有不同的背景(具体点就是不同的shape),有哪些状态呢？
 
+
+
+接下来我们学习怎么使用selector
+
+我们要实现下图所示的效果：
+
+默认状态
+
+
+
+点击时：
+
+
+
+
+
+在drawable新建selector_btn
+
+![image-20210903210757730](C:\Users\wzt\AppData\Roaming\Typora\typora-user-images\image-20210903210757730.png)
+
+![image-20210903210850199](C:\Users\wzt\AppData\Roaming\Typora\typora-user-images\image-20210903210850199.png)
+
+点击Ok后 selector就创建好了
+
+![image-20210903210939691](C:\Users\wzt\AppData\Roaming\Typora\typora-user-images\image-20210903210939691.png)
+
+
+
+然后我们运用刚才所学到的知识新建俩个shape(shape_btn_normal.xml shape_btn_pressed.xml)，分别对应默认状态下的btn和点击状态下的btn
+
+shape_btn_normal.xml:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <corners android:radius="100dp" />
+
+    <solid android:color="@color/btn_color_normal"/>
+
+
+</shape>
+```
+
+![image-20210903211653780](C:\Users\wzt\AppData\Roaming\Typora\typora-user-images\image-20210903211653780.png)
+
+shape_btn_pressed.xml:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <corners android:radius="100dp" />
+
+    <solid android:color="@color/btn_color_pressed"/>
+
+
+</shape>
+```
+
+![image-20210903211720666](C:\Users\wzt\AppData\Roaming\Typora\typora-user-images\image-20210903211720666.png)
+
+然后将俩个shape资源文件和selector资源文件进行绑定，再将selector资源文件和btn进行绑定
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/shape_btn_pressed" android:state_pressed="true" />
+    <item android:drawable="@drawable/shape_btn_normal" />
+
+</selector>
+```
+
+![image-20210903211940615](C:\Users\wzt\AppData\Roaming\Typora\typora-user-images\image-20210903211940615.png)
+
+
+
+selector与btn绑定的步骤和shape与btn绑定的步骤是一样的
+
+```xml
+<Button
+    android:layout_width="match_parent"
+    android:layout_height="52dp"
+    android:textSize="18sp"
+    android:textColor="#FFFFFF"
+    android:background="@drawable/selector_btn"
+    android:layout_marginStart="33dp"
+    android:layout_marginEnd="33dp"
+    android:text="@string/login"/>
+```
+
+然后看看效果吧
 
 ## 黑夜模式适配
 
