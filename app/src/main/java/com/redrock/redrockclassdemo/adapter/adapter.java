@@ -1,4 +1,4 @@
-package com.redrock.redrockclassdemo;
+package com.redrock.redrockclassdemo.adapter;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.redrock.redrockclassdemo.R;
+import com.redrock.redrockclassdemo.fruit;
 
 import java.util.ArrayList;
 

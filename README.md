@@ -324,7 +324,178 @@ selector与btn绑定的步骤和shape与btn绑定的步骤是一样的
 
 
 
-## ViewPager入门
+## ViewPager2入门
+
+什么是ViewPager2？看下面几张图片或视频（放图片）
+
+
+
+这些就是ViewPager2的使用实例，ViewPager其实和RecyclerView差不多，它的每一页可以就看作RecyclerView的一个item，实际上，ViewPager2就是Google工程师基于RecyclerView改造升级的一个玩意，理论上我们基于RecyclerView也是可以实现出来自己的ViewPager2的(当然这是很困难的，不管是RecyclerView还是ViewPager2都是几千甚至上万行的工程，现阶段我们做一个伸手党就好了。。。)
+
+
+
+说了这么多，我们来看看ViewPager2怎么使用，大家现阶段可以像我们刚才学习RecyclerView那样，暂时先记住它的基础使用套路，更深层次的等我们先会了基础的再去学习。
+
+第一步：添加ViewPager2的依赖
+
+```
+dependencies {
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+}
+```
+
+![image-20210905145129941](C:\Users\wzt\AppData\Roaming\Typora\typora-user-images\image-20210905145129941.png)
+
+第二步：添加ViewPager2的布局文件
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewPagerActivity">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
+```
+
+![image-20210905145354600](C:\Users\wzt\AppData\Roaming\Typora\typora-user-images\image-20210905145354600.png)
+
+第三步：配置ViewPager2的Adapter
+
+前面说了，ViewPager2实际上是由RecyclerView改进而来，它的使用套路当然也和RecyclerView类似
+
+```java
+public class PagerAdapter extends RecyclerView.Adapter<PagerAdapter.InnerHolder> {
+    private ArrayList<Character> data;
+
+    public PagerAdapter(ArrayList<Character> data) {
+        this.data = data;
+    }
+
+    @NonNull
+    @Override
+    public PagerAdapter.InnerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new InnerHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_vp, parent, false));
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull PagerAdapter.InnerHolder holder, int position) {
+        holder.textView.setText(data.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
+        return data.size();
+    }
+
+    public static class InnerHolder extends RecyclerView.ViewHolder {
+        private TextView textView;
+
+        public InnerHolder(@NonNull View itemView) {
+            super(itemView);
+            textView = itemView.findViewById(R.id.tv_vp2);
+        }
+    }
+}
+```
+
+可以发现和我们之前写的RecyclerView的adapter的代码是十分相似的(放一张对比图)：
+
+
+
+item_vp的代码如下：
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#4841E2"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_vp2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="46sp" />
+</LinearLayout>
+```
+
+
+
+最后一步：
+
+为ViewPager2设置adapter 但不用设置LayoutManger
+
+我们的数据还是自己本地生成的假数据
+
+```java
+public class ViewPagerActivity extends AppCompatActivity {
+    private ArrayList<Character> data = new ArrayList<>();
+    private ViewPager2 viewPager;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_view_pager);
+
+        //初始化假数据
+        data.add('红');
+        data.add('岩');
+        data.add('网');
+        data.add('校');
+        data.add('移');
+        data.add('动');
+        data.add('开');
+        data.add('发');
+        data.add('部');
+
+        viewPager = findViewById(R.id.view_pager);
+
+        viewPager.setAdapter(new PagerAdapter(data));
+
+    }
+}
+```
+
+先在我们来运行看看效果吧！
+
+(放图或放视频)
+
+
+
+
+
+其实这个效果用RecyclerView也是可以很容易实现的(将RecyclerView的item的布局文件根部局设置都成match_parent即可)，那我们为什么还要使用ViewPager2呢？这就要来讲讲那些ViewPager2的一些好用的点了
+
+①懒加载
+
+首先讲讲什么是懒加载，我们可以看到ViewPager是由很多个页面组成的，我们可以左右滑动来改变页面，当我们处于当前页面时，它的左右页面默认是加载好的，这样当我们滑动时就会更加流畅(如果没有提前加载好那就会在我们滑动的过程中去加载，性能不好是有可能导致卡顿的发生的)，这种设置无疑是好的，他可以让用户左右滑动更加流畅，但是当应用的一个页面是一个很复杂的页面时，这样子搞就会出问题，比如说下面这个页面(放图片)就可以说每个页面是相当复杂了，如果我们提前加载左右的页面会导致app占用的的内存过大，懒加载就是指我们只加载当前页面，其它的页面等我们用到它的时候再加载
+
+至于到底是否使用懒加载我们要根据具体场景去判断
+
+而ViewPager2设置不懒加载也很简单
+
+它有一个setOffscreenPageLimit(int)方法可以设置预加载的页数 我们设置为OFFSCREEN_PAGE_LIMIT_DEFAULT就可以很简单的实现懒加载
+
+
+
+```java
+viewPager.setOffscreenPageLimit(OFFSCREEN_PAGE_LIMIT_DEFAULT);
+```
+
+
+
+**②ViewPager2与Fragment结合**
+
+这个可以说是ViewPager2最常用的点了，这个应用场景可以在几乎所有app中见到
 
 
 

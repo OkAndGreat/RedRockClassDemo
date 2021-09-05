@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.redrock.redrockclassdemo.adapter.adapter;
+
 import java.util.ArrayList;
 
 public class RecyclerViewActivity extends AppCompatActivity {
@@ -24,7 +26,7 @@ public class RecyclerViewActivity extends AppCompatActivity {
             data.add(myFruit);
         }
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
         adapter myAdapter = new adapter(data);
         recyclerView.setAdapter(myAdapter);
 

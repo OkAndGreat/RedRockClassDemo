@@ -33,12 +33,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initView() {
-        btnRes = (Button) findViewById(R.id.btn_res);
-        btnNightAdapt = (Button) findViewById(R.id.btn_night_adapt);
-        btnMd = (Button) findViewById(R.id.btn_md);
-        btnVp = (Button) findViewById(R.id.btn_vp);
-        btnTy = (Button) findViewById(R.id.btn_ty);
-        btnRv = (Button) findViewById(R.id.btn_rv);
+        btnRes = findViewById(R.id.btn_res);
+        btnNightAdapt = findViewById(R.id.btn_night_adapt);
+        btnMd = findViewById(R.id.btn_md);
+        btnVp = findViewById(R.id.btn_vp);
+        btnTy = findViewById(R.id.btn_ty);
+        btnRv = findViewById(R.id.btn_rv);
     }
 
     @Override
