@@ -501,7 +501,86 @@ viewPager.setOffscreenPageLimit(OFFSCREEN_PAGE_LIMIT_DEFAULT);
 
 ## TabLayout入门
 
+前面介绍了ViewPager2，他还有一种经常与它一起搭配着使用的控件：TabLayout，TabLayout可以指示ViewPager2当前所处的页数
 
+来看看TabLayout是什么
+
+(放图)
+
+TabLayout的基础使用十分简单，我们以前面已经写的ViewPager2的例子为基础加上TabLayout
+
+首先添加相关依赖库
+
+```
+implementation 'com.google.android.material:material:1.5.0-alpha02'
+```
+
+然后在在布局文件中加上TabLayout
+
+**注意不要加成TableLayout去了**
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ViewPagerActivity">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>
+```
+
+
+
+然后在Activity中给ViewPager设置TabLayout
+
+```java
+public class TabLayoutActivity extends AppCompatActivity {
+    private ArrayList<Character> data = new ArrayList<>();
+    private ViewPager2 viewPager;
+    private TabLayout tabLayout;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_tab_layout);
+        //初始化假数据
+        data.add('红');
+        data.add('岩');
+        data.add('网');
+        data.add('校');
+        data.add('移');
+        data.add('动');
+        data.add('开');
+        data.add('发');
+        data.add('部');
+
+        viewPager = findViewById(R.id.view_pager);
+        tabLayout = findViewById(R.id.tabLayout);
+
+        viewPager.setAdapter(new PagerAdapter(data));
+
+        new TabLayoutMediator(tabLayout, viewPager, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                //在这里给Tab设置Text
+                tab.setText(data.get(position).toString());
+            }
+        }).attach();
+    }
+}
+```
 
 ## RecyclerView入门
 

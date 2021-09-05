@@ -1,7 +1,5 @@
 package com.redrock.redrockclassdemo;
 
-import static androidx.viewpager2.widget.ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT;
-
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
