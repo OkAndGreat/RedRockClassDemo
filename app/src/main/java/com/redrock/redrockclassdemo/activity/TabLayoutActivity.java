@@ -1,4 +1,4 @@
-package com.redrock.redrockclassdemo;
+package com.redrock.redrockclassdemo.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.redrock.redrockclassdemo.R;
 import com.redrock.redrockclassdemo.adapter.PagerAdapter;
 
 import java.util.ArrayList;

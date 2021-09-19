@@ -1,10 +1,11 @@
-package com.redrock.redrockclassdemo;
+package com.redrock.redrockclassdemo.activity;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.redrock.redrockclassdemo.R;
 import com.redrock.redrockclassdemo.adapter.PagerAdapter;
 
 import java.util.ArrayList;

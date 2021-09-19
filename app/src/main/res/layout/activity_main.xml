@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <Button
         android:id="@+id/btn_res"
@@ -39,6 +39,15 @@
         android:textAllCaps="false"
         android:text="@string/viewpager" />
 
+
+    <Button
+        android:id="@+id/btn_vp2_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:textAllCaps="false"
+        android:text="@string/viewpager_amp_fragment" />
+
     <Button
         android:id="@+id/btn_ty"
         android:layout_width="wrap_content"
@@ -46,6 +55,7 @@
         android:layout_marginTop="40dp"
         android:textAllCaps="false"
         android:text="@string/tablayout" />
+
 
     <Button
         android:id="@+id/btn_rv"

@@ -1,14 +1,16 @@
-package com.redrock.redrockclassdemo;
+package com.redrock.redrockclassdemo.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class NightAdaptActivity extends AppCompatActivity {
+import com.redrock.redrockclassdemo.R;
+
+public class ResActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_night_adapt);
+        setContentView(R.layout.activity_res);
     }
 }

@@ -1,4 +1,4 @@
-package com.redrock.redrockclassdemo;
+package com.redrock.redrockclassdemo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.redrock.redrockclassdemo.R;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Button btnRes;
     private Button btnNightAdapt;
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnVp;
     private Button btnTy;
     private Button btnRv;
+    private Button btnVpFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnTy.setOnClickListener(this);
         btnVp.setOnClickListener(this);
         btnRes.setOnClickListener(this);
+        btnVpFragment.setOnClickListener(this);
     }
 
     private void initView() {
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnVp = findViewById(R.id.btn_vp);
         btnTy = findViewById(R.id.btn_ty);
         btnRv = findViewById(R.id.btn_rv);
+        btnVpFragment = findViewById(R.id.btn_vp2_fragment);
     }
 
     @Override
@@ -57,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent = new Intent(this,ViewPagerActivity.class);
         } else if (id == R.id.btn_res) {
             intent = new Intent(this,ResActivity.class);
+        } else if (id == R.id.btn_vp2_fragment){
+            intent = new Intent(this, ViewPagerFragmentActivity.class);
         }
         startActivity(intent);
     }

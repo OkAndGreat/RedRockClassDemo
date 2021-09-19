@@ -1,8 +1,10 @@
-package com.redrock.redrockclassdemo;
+package com.redrock.redrockclassdemo.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.redrock.redrockclassdemo.R;
 
 public class MaterialDesignActivity extends AppCompatActivity {
 

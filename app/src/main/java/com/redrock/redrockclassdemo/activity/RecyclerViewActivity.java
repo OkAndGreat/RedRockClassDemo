@@ -1,4 +1,4 @@
-package com.redrock.redrockclassdemo;
+package com.redrock.redrockclassdemo.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.redrock.redrockclassdemo.R;
 import com.redrock.redrockclassdemo.adapter.adapter;
+import com.redrock.redrockclassdemo.fruit;
 
 import java.util.ArrayList;
 

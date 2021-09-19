@@ -10,25 +10,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RedRockClassDemo">
         <activity
-            android:name=".NightAdaptActivity"
+            android:name=".activity.ViewPagerFragmentActivity"
             android:exported="true" />
         <activity
-            android:name=".RecyclerViewActivity"
+            android:name=".activity.NightAdaptActivity"
             android:exported="true" />
         <activity
-            android:name=".TabLayoutActivity"
+            android:name=".activity.RecyclerViewActivity"
             android:exported="true" />
         <activity
-            android:name=".ViewPagerActivity"
+            android:name=".activity.TabLayoutActivity"
             android:exported="true" />
         <activity
-            android:name=".MaterialDesignActivity"
+            android:name=".activity.ViewPagerActivity"
             android:exported="true" />
         <activity
-            android:name=".ResActivity"
+            android:name=".activity.MaterialDesignActivity"
             android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.ResActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

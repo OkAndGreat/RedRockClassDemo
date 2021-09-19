@@ -432,7 +432,7 @@ item_vp的代码如下：
 
 最后一步：
 
-为ViewPager2设置adapter 但不用设置LayoutManger
+为ViewPager2设置adapter
 
 我们的数据还是自己本地生成的假数据
 
@@ -493,9 +493,151 @@ viewPager.setOffscreenPageLimit(OFFSCREEN_PAGE_LIMIT_DEFAULT);
 
 
 
-**②ViewPager2与Fragment结合**
+**进阶：ViewPager2与Fragment结合**
 
 这个可以说是ViewPager2最常用的点了，这个应用场景可以在几乎所有app中见到
+
+（放应用场景图）
+
+可以看到，ViewPager2此时的每一页就是一个Fragment，下面我们以有俩个Fragment的ViewPager为例来演示这种场景怎么使用
+
+首先新建俩个Fragment并编写好它们的布局文件(这里简单起见Fragment的布局文件编写的很简单，我们演示的app的ViewPager的Fragment的布局文件可以看到是很复杂的)
+
+俩个Fragment的布局文件：
+
+![image-20210911103839680](C:\Users\wzt\AppData\Roaming\Typora\typora-user-images\image-20210911103839680.png)
+
+![image-20210911103857948](C:\Users\wzt\AppData\Roaming\Typora\typora-user-images\image-20210911103857948.png)
+
+俩个Fragment的代码：
+
+Fragment1：
+
+```java
+public class Fragment1 extends Fragment {
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_vp1,container,false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+    }
+}
+```
+
+Fragment2:
+
+```java
+public class Fragment2 extends Fragment {
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_vp2,container,false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+}
+```
+
+
+
+Fragment写好了，接下来看看俩个Fragment怎么和ViewPager联动起来呢？
+
+我们在ViewPagerFragmentActivity中演示怎么使用：
+
+
+
+首先在Activity对应的布局文件中加上ViewPager：
+
+
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ViewPagerFragmentActivity">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
+```
+
+
+
+然后配置ViewPager的adapter，我们为之前写的那个ViewPager配置的adapter是继承自RecyclerView.Adapter
+
+这里我们如果我们将ViewPager与Fragment联动使用，我们使用的adapter需要继承自FragmentStateAdapter
+
+> 其实FragmentStateAdapter也继承自RecyclerView.Adapter，它是别人帮我们写的一个可以帮助我们更方便实现ViewPager与Fragment联动的类
+>
+> 我们当然可以自己写一个adapter去继承自RecyclerView.Adapter然后实现ViewPager与Fragment的联动使用，但目前阶段这样做没有必要（小声哔哔：估计在座的各位也没这个实力  逃ε=ε=ε=┏(゜ロ゜;)┛。。。
+
+
+
+FragmentStateAdapter的使用非常简单
+
+```java
+public class FragmentPagerAdapter extends FragmentStateAdapter {
+    private final ArrayList<Fragment> fragments;
+
+    public FragmentPagerAdapter(@NonNull FragmentActivity fragmentActivity, ArrayList<Fragment> fragments) {
+        super(fragmentActivity);
+        this.fragments = fragments;
+    }
+
+    //从提供的Fragment数据源中拿数据
+    @NonNull
+    @Override
+    public Fragment createFragment(int position) {
+        return fragments.get(position);
+    }
+
+    //返回Fragment的个数
+    @Override
+    public int getItemCount() {
+        return fragments.size();
+    }
+}
+```
+
+
+
+然后在Activity中为ViewPager设置适配器就可以了
+
+```java
+public class ViewPagerFragmentActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_view_pager_fragment);
+
+        ViewPager2 viewPager2 = findViewById(R.id.view_pager_fragment);
+
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        fragments.add(new Fragment1());
+        fragments.add(new Fragment2());
+        FragmentPagerAdapter adapter = new FragmentPagerAdapter(this,fragments);
+
+        viewPager2.setAdapter(adapter);
+    }
+}
+```
+
+
 
 
 
@@ -860,4 +1002,12 @@ recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
 我们再来讲讲GridLayoutManger
+
+
+
+
+
+# 安卓第二次课作业
+
+
 
